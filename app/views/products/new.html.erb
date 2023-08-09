@@ -1,0 +1,27 @@
+<h1>Create Product</h1>
+
+<%= form_with url:'/products', method: :post do |form| %>
+
+  <%= form.label :name  %> <br>
+  <%= form.text_field :name  %> <br>
+
+  <%= form.label :description %> <br>
+  <%= form.text_area :description %> <br>
+
+  <%= form.label :price %> <br>
+  <%= form.number_field :price %> <br>
+
+  <%= form.label :product_profile %> <br>
+  <%= form.file_field :product_profile %> <br>
+  
+  <%= form.label :category %> <br>
+ <%= form.collection_select :category_id, Category.order(:category_name), :id, :category_name %>
+<br> 
+  
+  <%= form.submit "create" %>
+<% end %>
+
+
+
+  <%= button_to "Back", products_path, method: :get %>
+  <%= button_to "Sign_out", users_path, method: :delete %>

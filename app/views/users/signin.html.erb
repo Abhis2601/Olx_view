@@ -1,0 +1,11 @@
+<%= form_with url:'/users/login',method: :post do |form| %>
+
+  <%= form.label :email %>
+  <%= form.email_field :email %> <br>
+  <%= form.label :password %>
+  <%= form.password_field :password %> <br> 
+
+  <%= form.submit "SignIn" %>
+<% end %>
+<br>
+  <%= button_to "SignUp", new_users_path, method: :get %>

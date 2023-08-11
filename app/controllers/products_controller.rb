@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+	load_and_authorize_resource 
+
 	def new
 	end
 
@@ -14,7 +16,7 @@ class ProductsController < ApplicationController
 	end
 
 	def index
-
+		# @products = Product.all
  	@products =	if params[:name].present?		 
 									Product.available.where("name like ?","%#{params[:name]}%")
 						    elsif params[:alphanumeric_id].present?
@@ -25,6 +27,10 @@ class ProductsController < ApplicationController
 						    	Product.available
 								end		
 
+	end
+
+	def current_user_products
+		@products = @current_user.products.available
 	end
 
 	private

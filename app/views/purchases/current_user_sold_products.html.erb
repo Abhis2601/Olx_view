@@ -1,0 +1,12 @@
+<h1>Purchase products</h1>
+<ol>
+  <% @purchases.each do |purchase| %>
+    <li type=> Name:<%= purchase.name %></li><br>
+     Price:<%= purchase.price %><br>
+
+  <% end %>
+</ol>
+
+
+<%= button_to "Back", products_path, method: :get %>
+<%= button_to "Sign_out", "/users", method: :delete %>

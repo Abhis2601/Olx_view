@@ -1,3 +1,4 @@
+<p style='color:red'> <%= flash[:notice] %> </p>
 <%= form_with url:'/users/login',method: :post do |form| %>
 
   <%= form.label :email %>

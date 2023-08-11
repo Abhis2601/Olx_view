@@ -8,7 +8,12 @@ Rails.application.routes.draw do
     post 'login', on: :collection 
   end
   resources :categories
-  resources :products
-  resources :purchases
+  resources :products do 
+    get'current_user_products', on: :collection
+  end
+  resources :purchases do 
+    get 'buy', on: :member
+    get 'current_user_sold_products', on: :collection
+  end
 
 end

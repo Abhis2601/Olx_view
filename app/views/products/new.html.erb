@@ -15,13 +15,14 @@
   <%= form.file_field :product_profile %> <br>
   
   <%= form.label :category %> <br>
- <%= form.collection_select :category_id, Category.order(:category_name), :id, :category_name %>
+ <%= form.collection_select :category_id, Category.order(:category_name), :id, :category_name %><br>
 <br> 
   
   <%= form.submit "create" %>
-<% end %>
+<% end %><br>
 
 
 
-  <%= button_to "Back", products_path, method: :get %>
+  <%= button_to "Back", products_path, method: :get %> <br>
+
   <%= button_to "Sign_out", users_path, method: :delete %>

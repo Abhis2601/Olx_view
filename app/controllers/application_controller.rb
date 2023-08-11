@@ -1,20 +1,28 @@
 class ApplicationController < ActionController::Base
-	before_action :current_user , :require_login
+  include JsonWebToken
+  before_action :authenticate_user
 
-
-  
-  
-  private
-
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:notice] = "You can not access"
+    # redirect_to :back
+  end
+rescue_from ActiveRecord::RecordNotFound do |exception|
+   flash[:notice] = "You can not access"
+    # redirect_to :back
+ end
   def current_user
-    @current_user ||= session[:current_user_id] &&
-      User.find_by(id: session[:current_user_id])
+    @current_user
   end
 
-
-  def require_login
-    if @current_user.present?
+  def authenticate_user
+    begin
+      decoded = jwt_decode(session[:current_user].split(' ').last)
+      @current_user = User.find_by_email(decoded[:email])
+      raise unless @current_user.present?
+    rescue StandardError
+      flash[:notice] = "Unauthorize User"
       redirect_to signin_users_path
+     # render html: helpers.tag.strong('Unauthorized')
     end
   end
 end

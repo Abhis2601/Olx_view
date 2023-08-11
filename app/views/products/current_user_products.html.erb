@@ -1,0 +1,18 @@
+<h1> <%=@current_user.first_name %> Products</h1>
+
+<ul>
+  <% @products.each do |product| %>
+    <li>
+        Name:<%= product.name %><br>
+        Price:<%= product.price %><br>
+        Description:<%= product.description %><br>
+        Image:<%= image_tag(product.product_profile) %> <br>
+        <%= button_to "Buy", buy_purchase_path(product.id), method: :get %>
+      </li>
+  <% end %>
+
+</ul>
+ 
+   <%= button_to "Back", products_path, method: :get %> <br>
+  <%= button_to "New Product", new_product_path, method: :get %><br>
+  <%= button_to "Sign_out", users_path, method: :delete %>

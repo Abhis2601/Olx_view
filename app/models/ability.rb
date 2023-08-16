@@ -29,10 +29,10 @@ class Ability
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/blob/develop/docs/define_check_abilities.
     if user.present?
-        can [:create, :index, :update_product, :destroy], Product, user_id:user.id
-        can  [:index, :current_user_sold_products, :mail_send], Purchase, user_id:user
+        can [:create, :index, :update_product, :destroy,:current_user_products], Product, user_id:user.id
+        can  [:index, :current_user_sold_products], Purchase, user_id:user
         cannot :create, Purchase, user_id: user.id
         # can :update, User, id:user
-      end
+    end
   end
 end

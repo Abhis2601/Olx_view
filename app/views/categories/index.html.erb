@@ -2,7 +2,7 @@
 
 <ul>
   <%  Category.all.each do |category| %>
-    <li>Category Name: <%= category.category_name %></li>    
+    <li><%= button_to category.category_name,   particular_category_products_category_path(category), method: :get %></li>    
   <% end %>
 </ul>
 

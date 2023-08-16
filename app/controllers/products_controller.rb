@@ -16,13 +16,12 @@ class ProductsController < ApplicationController
 	end
 
 	def index
-		# @products = Product.all
  	@products =	if params[:name].present?		 
 									Product.available.where("name like ?","%#{params[:name]}%")
 						    elsif params[:alphanumeric_id].present?
-						    	Product.available.where("alphanumeric_id like ?","%#{params[:alphanumeric_id]}%")
+						    	Product.available.where("alphanumeric_id like ?","%#{params[:name]}%")
 						    elsif params[:category_name].present?
-					  	  	Product.joins(:category).available.merge(Category.where("category_name like ?","%#{params[:category_name]}%"))
+					  	  	Product.joins(:category).available.merge(Category.where("category_name like ?","%#{params[:name]}%"))
 						    else
 						    	Product.available
 								end		

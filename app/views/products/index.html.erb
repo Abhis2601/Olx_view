@@ -1,12 +1,14 @@
  <%= button_to "My Products", "/products/current_user_products", method: :get %>
  <%= button_to "My Purchasing", "/purchases/current_user_sold_products", method: :get %>
 
+   <%= button_to "CATEGORIES", categories_path, method: :get %> <br>
+
   <%= button_to "Sign_out", users_path, method: :delete %> <br>
 
 <h1>Products</h1>
   <%= form_with url: "/products", method: :get do |form| %>
   <%= form.label :name, "Search for:" %>
-  <%= form.text_field :name %>
+  <%= form.text_field :name ,placeholder:"Find Cars, Mobile Phones and more..."%>
   <%= form.submit "Search" %>
 <% end %>
 
@@ -16,7 +18,7 @@
         Name:<%= product.name %><br>
         Price:<%= product.price  %><br>
         Description:<%= product.description %><br>
-        Image:<%= image_tag(product.product_profile) %> <br>
+        Image:<%= image_tag(product.product_profile, style: 'height:100%;width:auto;') %> <br>
         <% if @current_user.id == product.user_id %>
          This is your product
         <% else %>
@@ -28,5 +30,4 @@
 </ul>
 
   <%= button_to "New Product", new_product_path, method: :get %><br>
-
-<input type="text" placeholder="Find Cars, Mobile Phones and more..." data-aut-id="searchBox" value="">
+  <%= button_to "Back",  products_path, method: :get%>

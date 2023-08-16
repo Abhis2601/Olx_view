@@ -7,7 +7,9 @@ Rails.application.routes.draw do
     get 'signin', on: :collection
     post 'login', on: :collection 
   end
-  resources :categories
+  resources :categories do 
+    get 'particular_category_products', on: :member
+  end
   resources :products do 
     get'current_user_products', on: :collection
   end
